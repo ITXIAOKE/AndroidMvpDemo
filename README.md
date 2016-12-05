@@ -1,0 +1,8 @@
+MVP架构模式
+概念解释
+MVP是Model(数据) View(界面) Presenter(表现层)的缩写，它是MVC架构的变种，强调Model和View的最大化解耦和单一职责原则
+Model：负责数据的来源和封装，比如网络请求类，数据库操作类以及java bean，如果有必要则提供接口暴露自己处理数据的状态和进度。
+View：负责UI相关，如布局UI的初始化，各种listener的设置。在Android中，我们通常写的Activity和Fragment就是属于View层；在web开发中，html则是View层。
+Controller：业务逻辑控制器，主要负责当获取到数据后对数据进行逻辑处理，然后将数据绑定到View上；比如：请求一个url，从网络获取到数据，进行解析javabean，然后各种set数据。对于控制器的概念大家很好理解，因为我们每天都在这样做，在Activity中请求数据然后更新UI。但是结合View的概念来看，很显然Activity和Fragment不但承担了View的任务，还负责完成的Controller的功能，随着业务功能的增多，Activity的代码越来越难以阅读和维护，这就是在Android中使用MVC的弊端，为了解决MVC模式下View层的臃肿，MVP模式应运而生。
+Presenter：专门从C独立出来的业务逻辑层，主要负责处理原先View层的业务逻辑，解决了Activity的臃肿问题，让Activity只负责处理UI，职责更加明确；并且将View层的业务逻辑抽取到P层之后，View层与Model层也实现了解耦；便于后期代码的扩展和维护,并且业务逻辑层独立后代码还得到很大的重用性
+总结：MVC模式下，V和C纠缠不清，并且View和Model相互关联，而MVP模式下Model和VIew解耦，便于单元测试，项目维护，代码重用
